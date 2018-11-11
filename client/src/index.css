@@ -16,3 +16,15 @@ code {
 .cardHeader {
   color: white !important;
 }
+
+.navbarLink {
+  cursor: pointer;
+}
+
+.navbarLink:hover {
+  color: red;
+}
+
+.separator {
+  margin-right: 5px;
+}
