@@ -1,6 +1,5 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import NavBar from '../NavBar'
 import axiosClient from '../axiosClient';
 import ShowPost from './components/Show';
 import Comments from '../Comment/Index';
@@ -21,13 +20,19 @@ export default class Post extends React.Component {
                .then((response) => {this.setState({
         category: response.data.category,
         post: response.data.post
-      }, () => {console.log(this.state)})});
+      }, () => {
+        const postLinks = [{name: 'Categories List', path: '/'},
+                           {name: this.state.category.name, path: `/categories/${this.state.category.id}`}]
+        const postName = this.state.post.name
+        const postButton = ''
+        this.props.handleNavBarChange(postLinks, postName, postButton)
+      })
+    });
   }
 
   render(){
     return(
       <div>
-        <NavBar name="Show post"/>
         <Grid container justify="center">
           <Grid item xs={12} md={7}>
             <ShowPost
