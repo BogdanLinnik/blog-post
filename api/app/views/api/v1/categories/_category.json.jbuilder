@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-json.id category.id
-json.name category.name
-json.description category.description
+json.category do
+  json.partial! '/api/v1/categories/category_params', category: category
+end
