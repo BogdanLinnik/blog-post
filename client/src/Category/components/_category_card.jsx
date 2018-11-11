@@ -39,7 +39,7 @@ export const CategoryCard = (props) => {
               <Button
                 color="primary"
                 variant="outlined"
-                onClick={() => props.handleRedirect(props.category.id)}
+                onClick={() => props.handleRedirect(`/categories/${props.category.id}`)}
               >
                   Show posts
               </Button>

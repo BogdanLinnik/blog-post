@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 import axiosClient from '../axiosClient';
-import NavBar from '../NavBar'
 import { AllCategories } from './components/AllCategories';
 import { NewCategory } from './components/NewCategory';
 
@@ -12,17 +11,12 @@ export class Category extends Component {
     this.state = {
       categories: []
     };
-    this.handleRedirect = this.handleRedirect.bind(this);
     this.handleCreate = this.handleCreate.bind(this)
     this.addNewCategory = this.addNewCategory.bind(this)
     this.handleUpdate = this.handleUpdate.bind(this);
     this.updateCategory = this.updateCategory.bind(this);
     this.handleDelete = this.handleDelete.bind(this)
     this.deleteCategory = this.deleteCategory.bind(this)
-  }
-
-  handleRedirect(postId){
-    this.props.history.push(`/categories/${postId}`)
   }
 
   handleCreate(name, description){
@@ -73,22 +67,23 @@ export class Category extends Component {
 
   componentDidMount(){
     axiosClient.get('categories.json').then((response) => {
-      this.setState({ categories: response.data.categories })
+      this.setState({ categories: response.data.categories }, () => {
+        const categoryLinks = []
+        const categoryTitle = 'Categories List'
+        const newCategory = (<NewCategory handleCreate={this.handleCreate} />)
+        this.props.handleNavBarChange(categoryLinks, categoryTitle, newCategory)
+      })
     });
   }
 
-
   render(){
-    const newCategory = (<NewCategory handleCreate={this.handleCreate}/>)
-
     return(
       <div>
-        <NavBar name="Category page" button={newCategory} />
         <Grid container justify="center">
           <Grid item xs={8}>
             <AllCategories
               categories={this.state.categories}
-              handleRedirect={this.handleRedirect}
+              handleRedirect={this.props.handleRedirect}
               handleUpdate={this.handleUpdate}
               handleDelete={this.handleDelete}
             />
