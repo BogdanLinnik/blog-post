@@ -37,7 +37,7 @@ export const PostCard = (props) => {
               <Button
                 color="primary"
                 variant="outlined"
-                onClick={() => props.handleRedirect(props.post.id)}
+                onClick={() => props.handleRedirect(`/categories/${props.categoryId}/posts/${props.post.id}`)}
               >
                   Read more
               </Button>

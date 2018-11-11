@@ -37,6 +37,7 @@ export default class Post extends React.Component{
     const postShow = (
       <PostCard
         post={this.props.post}
+        categoryId={this.props.categoryId}
         handleRedirect={this.props.handleRedirect}
         handleEdit={this.handleEdit}
         handleDelete={this.props.handleDelete}

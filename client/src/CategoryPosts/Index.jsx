@@ -4,7 +4,6 @@ import axiosClient from '../axiosClient';
 import { AllPosts } from './components/AllPosts';
 import NewPost from './components/NewPost';
 import Comments from '../Comment/Index';
-import NavBar from '../NavBar'
 
 export default class CategoryPosts extends React.Component {
 
@@ -20,17 +19,12 @@ export default class CategoryPosts extends React.Component {
       },
       posts: []
     };
-    this.handleRedirect = this.handleRedirect.bind(this);
     this.handleCreate = this.handleCreate.bind(this);
     this.addNewPost = this.addNewPost.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
     this.updatePost = this.updatePost.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.deletePost = this.deletePost.bind(this);
-  }
-
-  handleRedirect(postId){
-    this.props.history.push(`/posts/${postId}`)
   }
 
   buildFormData(name, content, file){
@@ -92,23 +86,27 @@ export default class CategoryPosts extends React.Component {
   componentDidMount(){
     axiosClient.get(`categories/${this.state.categoryId}.json`).then((response) => {
       this.setState({
-        categories: response.data.category,
+        category: response.data.category,
         posts: response.data.posts
+      }, () => {
+        const categoryLinks = [{name: 'Categories List', path: '/'}]
+        const categoryName = this.state.category.name
+        const newPost = (<NewPost handleCreate={this.handleCreate}/>)
+        this.props.handleNavBarChange(categoryLinks, categoryName, newPost)
       })
     });
+
   }
 
   render(){
-    const newPost = (<NewPost handleCreate={this.handleCreate}/>)
-
     return(
       <div>
-        <NavBar name="Category page" button={newPost} />
         <Grid container justify="center">
           <Grid item xs={12} md={7}>
             <AllPosts
+              categoryId={this.state.categoryId}
               posts={this.state.posts}
-              handleRedirect={this.handleRedirect}
+              handleRedirect={this.props.handleRedirect}
               handleUpdate={this.handleUpdate}
               handleDelete={this.handleDelete}
             />
