@@ -1,5 +1,5 @@
 import axiosClient from '../axiosClient';
-import { FETCH_POSTS, FETCH_POST, NEW_POST, UPDATE_POST, DELETE_POST } from '../actions/types'
+import { FETCH_POSTS, NEW_POST, UPDATE_POST, DELETE_POST } from '../actions/types'
 
 export const fetchPosts = (categoryId) => dispatch => {
   axiosClient.get(`categories/${categoryId}.json`).then((response) => {
