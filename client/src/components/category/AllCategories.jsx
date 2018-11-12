@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchCategories } from '../../actions/categoryActions';
-import Category from './_category';
 import { NEW_CATEGORY, UPDATE_CATEGORY, DELETE_CATEGORY } from '../../actions/types'
+import Category from './_category';
 
 class AllCategories extends Component {
 

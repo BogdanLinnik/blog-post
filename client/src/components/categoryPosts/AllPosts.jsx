@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchPosts } from '../../actions/postActions';
+import { FETCH_POSTS, NEW_POST, UPDATE_POST, DELETE_POST } from '../../actions/types'
 import Post from './_post';
 import NewPost from './NewPost';
-import { FETCH_POSTS, NEW_POST, UPDATE_POST, DELETE_POST } from '../../actions/types'
 
 const categoryLinks = [{name: 'Categories List', path: '/'}]
 const initialState = {
