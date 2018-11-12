@@ -3,7 +3,7 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 
-export const NavBar = (props) => {
+const NavBar = (props) => {
 
   let links = props.links.map((link) => {
     return(
@@ -28,3 +28,5 @@ export const NavBar = (props) => {
     </div>
   )
 }
+
+export default NavBar;
