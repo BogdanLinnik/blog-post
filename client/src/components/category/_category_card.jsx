@@ -54,7 +54,8 @@ const CategoryCard = (props) => {
 CategoryCard.propTypes = {
   handleRedirect: PropTypes.func.isRequired,
   handleEdit: PropTypes.func.isRequired,
-  deleteCategory: PropTypes.func.isRequired
+  deleteCategory: PropTypes.func.isRequired,
+  category: PropTypes.object.isRequired
 }
 
 export default connect(null, { deleteCategory })(CategoryCard)

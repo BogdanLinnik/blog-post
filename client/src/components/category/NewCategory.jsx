@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
@@ -16,7 +16,7 @@ const initialState = {
   open: false
 }
 
-class NewCategory extends React.Component {
+class NewCategory extends Component {
 
   constructor(props) {
     super(props);

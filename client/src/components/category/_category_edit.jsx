@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Card from '@material-ui/core/Card';
@@ -9,7 +9,7 @@ import CardActions from '@material-ui/core/CardActions';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import { updateCategory } from '../../actions/categoryActions';
 
-class CategoryEdit extends React.Component {
+class CategoryEdit extends Component {
 
   constructor(props) {
     super(props);

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CategoryCard from './_category_card';
 import CategoryEdit from './_category_edit';
 
-export default class Category extends React.Component{
+export default class Category extends Component{
 
   constructor(props) {
     super(props);
