@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import PostCard from './_post_card';
 import PostEdit from './_post_edit';
 
-export default class Post extends React.Component{
+export default class Post extends Component {
 
   constructor(props) {
     super(props);
@@ -10,12 +11,6 @@ export default class Post extends React.Component{
       editable: false
     }
     this.handleEdit = this.handleEdit.bind(this)
-    this.updatePost = this.updatePost.bind(this)
-  }
-
-  updatePost(post){
-    this.props.handleUpdate(post);
-    this.handleEdit();
   }
 
   handleEdit(){
@@ -29,8 +24,9 @@ export default class Post extends React.Component{
     const postEdit = (
       <PostEdit
         post={this.props.post}
+        buildFormData={this.props.buildFormData}
+        config={this.props.config}
         handleEdit={this.handleEdit}
-        updatePost={this.updatePost}
       />
     );
 
@@ -40,7 +36,6 @@ export default class Post extends React.Component{
         categoryId={this.props.categoryId}
         handleRedirect={this.props.handleRedirect}
         handleEdit={this.handleEdit}
-        handleDelete={this.props.handleDelete}
       />
     );
 
@@ -52,4 +47,12 @@ export default class Post extends React.Component{
       </div>
     )
   }
+}
+
+Post.propTypes = {
+  handleRedirect: PropTypes.func.isRequired,
+  buildFormData: PropTypes.func.isRequired,
+  categoryId: PropTypes.string.isRequired,
+  post: PropTypes.object.isRequired,
+  config: PropTypes.object.isRequired
 }

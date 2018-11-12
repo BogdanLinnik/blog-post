@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -7,8 +9,9 @@ import CardActions from '@material-ui/core/CardActions';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import Snackbar from '@material-ui/core/Snackbar';
 import Typography from '@material-ui/core/Typography';
+import { updatePost } from '../../actions/postActions';
 
-export default class PostEdit extends React.Component {
+class PostEdit extends Component {
 
   constructor(props) {
     super(props);
@@ -16,10 +19,10 @@ export default class PostEdit extends React.Component {
       id: props.post.id,
       name: props.post.name,
       content: props.post.content,
-      file: {name: props.post.file_name},
+      file_name: props.post.file_name,
+      file: null,
       fileTooBig: false
     }
-    console.log(this.state)
     this.handleChange = this.handleChange.bind(this)
   }
 
@@ -38,16 +41,28 @@ export default class PostEdit extends React.Component {
   handleFileChange = event => {
     const file = event.target.files[0];
     if (file.size <= 2097152){
-      this.setState({file: file});
+      this.setState({file: file, file_name: file.name});
     } else {
       this.setState({fileTooBig: true});
     }
   }
 
+  handleFormSubmit = () => {
+
+    const formData = this.props.buildFormData(
+      this.state.name,
+      this.state.content,
+      this.state.file
+    );
+
+    this.props.updatePost(this.state.id, formData, this.props.config)
+    this.props.handleEdit();
+  }
+
   render(){
     return (
       <Card style={{ marginTop: 10 }}>
-        <ValidatorForm onSubmit={() => this.props.updatePost(this.state)} >
+        <ValidatorForm onSubmit={() => this.handleFormSubmit()} >
           <CardHeader
             title={
               <div>
@@ -64,7 +79,7 @@ export default class PostEdit extends React.Component {
                     Upload file (Max size 2mb)
                   </Button>
                   <Typography component="p" style={{wordBreak: 'break-word', display: 'inline-block', marginLeft: '20px'}}>
-                    {this.state.file.name}
+                    {this.state.file_name}
                   </Typography>
                 </label>
               </div>
@@ -131,3 +146,13 @@ export default class PostEdit extends React.Component {
     )
   }
 }
+
+PostEdit.propTypes = {
+  buildFormData: PropTypes.func.isRequired,
+  updatePost: PropTypes.func.isRequired,
+  handleEdit: PropTypes.func.isRequired,
+  config: PropTypes.object.isRequired,
+  post: PropTypes.object.isRequired
+}
+
+export default connect(null, { updatePost })(PostEdit)

@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
@@ -8,16 +10,17 @@ import AddIcon from '@material-ui/icons/Add';
 import Snackbar from '@material-ui/core/Snackbar';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import Typography from '@material-ui/core/Typography';
+import { createPost } from '../../actions/postActions';
 
 const initialState = {
   name: '',
   content: '',
   open: false,
-  file: {},
+  file: null,
   fileTooBig: false
 }
 
-export default class NewPost extends React.Component {
+class NewPost extends Component {
 
   constructor(props) {
     super(props);
@@ -59,17 +62,24 @@ export default class NewPost extends React.Component {
   };
 
   closeDialog = () => {
-    this.setState({ open: false });
+    this.setState(initialState);
   };
 
   submitForm = () => {
-    this.props.handleCreate(this.state.name,
-                            this.state.content,
-                            this.state.file);
+    const formData = this.props.buildFormData(
+      this.state.name,
+      this.state.content,
+      this.state.file
+    );
+
+    this.props.createPost(formData, this.props.config);
+
     this.closeDialog();
   }
 
   render() {
+    let fileName = this.state.file ? this.state.file.name : ''
+
     return(
       <div>
         <Button
@@ -99,7 +109,7 @@ export default class NewPost extends React.Component {
                   Upload file (Max size 2mb)
                 </Button>
                 <Typography component="p" style={{wordBreak: 'break-word', display: 'inline-block', marginLeft: '20px'}}>
-                  {this.state.file.name}
+                  {fileName}
                 </Typography>
               </label>
               <TextValidator
@@ -164,3 +174,11 @@ export default class NewPost extends React.Component {
     )
   }
 }
+
+NewPost.propTypes = {
+  buildFormData: PropTypes.func.isRequired,
+  createPost: PropTypes.func.isRequired,
+  config: PropTypes.object.isRequired
+}
+
+export default connect(null, { createPost })(NewPost)
