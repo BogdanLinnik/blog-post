@@ -1,12 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+import { updateCategory } from '../../actions/categoryActions';
 
-export default class CategoryEdit extends React.Component {
+class CategoryEdit extends React.Component {
 
   constructor(props) {
     super(props);
@@ -15,6 +18,7 @@ export default class CategoryEdit extends React.Component {
       name: props.category.name,
       description: props.category.description
     }
+    this.handleFormSubmit = this.handleFormSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
 
@@ -30,10 +34,15 @@ export default class CategoryEdit extends React.Component {
     this.setState({[name]: value});
   }
 
+  handleFormSubmit = () => {
+    this.props.updateCategory(this.state)
+    this.props.handleEdit();
+  }
+
   render(){
     return (
       <Card style={{ marginTop: 10 }}>
-        <ValidatorForm onSubmit={() => this.props.updateCategory(this.state)} >
+        <ValidatorForm onSubmit={() => this.handleFormSubmit()} >
           <CardHeader
             title={
               <TextValidator
@@ -86,3 +95,11 @@ export default class CategoryEdit extends React.Component {
     )
   }
 }
+
+CategoryEdit.propTypes = {
+  updateCategory: PropTypes.func.isRequired,
+  handleEdit: PropTypes.func.isRequired,
+  category: PropTypes.object.isRequired
+}
+
+export default connect(null, { updateCategory })(CategoryEdit)

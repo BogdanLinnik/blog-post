@@ -1,8 +1,7 @@
 import React from 'react';
-import { CategoryCard } from './_category_card';
+import PropTypes from 'prop-types';
+import CategoryCard from './_category_card';
 import CategoryEdit from './_category_edit';
-
-
 
 export default class Category extends React.Component{
 
@@ -15,12 +14,6 @@ export default class Category extends React.Component{
       editable: false
     }
     this.handleEdit = this.handleEdit.bind(this)
-    this.updateCategory = this.updateCategory.bind(this)
-  }
-
-  updateCategory(category){
-    this.props.handleUpdate(category);
-    this.handleEdit();
   }
 
   handleEdit(){
@@ -35,7 +28,6 @@ export default class Category extends React.Component{
       <CategoryEdit
         category={this.props.category}
         handleEdit={this.handleEdit}
-        updateCategory={this.updateCategory}
       />
     );
 
@@ -44,7 +36,6 @@ export default class Category extends React.Component{
         category={this.props.category}
         handleRedirect={this.props.handleRedirect}
         handleEdit={this.handleEdit}
-        handleDelete={this.props.handleDelete}
       />
     );
 
@@ -56,4 +47,9 @@ export default class Category extends React.Component{
       </div>
     )
   }
+}
+
+Category.propTypes = {
+  handleRedirect: PropTypes.func.isRequired,
+  category: PropTypes.object.isRequired
 }

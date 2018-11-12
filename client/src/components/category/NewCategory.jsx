@@ -6,6 +6,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
 import AddIcon from '@material-ui/icons/Add';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { createCategory } from '../../actions/categoryActions';
 
 const initialState = {
   name: '',
@@ -13,7 +16,7 @@ const initialState = {
   open: false
 }
 
-export class NewCategory extends React.Component {
+class NewCategory extends React.Component {
 
   constructor(props) {
     super(props);
@@ -45,8 +48,10 @@ export class NewCategory extends React.Component {
   };
 
   submitForm = () => {
-    this.props.handleCreate(this.state.name,
-                            this.state.description);
+    let category = { category: {name: this.state.name, description: this.state.description} }
+    this.props.createCategory(category)
+
+    this.setState(initialState);
     this.closeDialog();
   }
 
@@ -116,3 +121,9 @@ export class NewCategory extends React.Component {
     )
   }
 }
+
+NewCategory.propTypes = {
+  createCategory: PropTypes.func.isRequired,
+}
+
+export default connect(null, { createCategory })(NewCategory)
