@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
 import Category from './components/category/index';
-import Posts from './components/categoryPosts/index';
-import CategoryPost from './components/post/index';
+import CategoryPosts from './components/categoryPosts/index';
+import Post from './components/post/index';
 
 export default class Routes extends Component {
   render(){
@@ -11,7 +11,7 @@ export default class Routes extends Component {
         <Switch>
           <Route
             path="/categories/:categoryId/posts/:postId"
-            render={props => <CategoryPost
+            render={props => <Post
               handleRedirect={this.props.handleRedirect}
               handleNavBarChange={this.props.handleNavBarChange}
               {...props}
@@ -19,7 +19,7 @@ export default class Routes extends Component {
           />
           <Route
             path="/categories/:categoryId"
-            render={props => <Posts
+            render={props => <CategoryPosts
               handleRedirect={this.props.handleRedirect}
               handleNavBarChange={this.props.handleNavBarChange}
               {...props}
