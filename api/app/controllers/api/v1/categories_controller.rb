@@ -27,7 +27,7 @@ module Api
       end
 
       def categories
-        @categories = Category.all
+        @categories = Category.all.order(updated_at: :desc)
       end
 
       def category_params
