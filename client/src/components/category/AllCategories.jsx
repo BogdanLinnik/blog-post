@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchCategories } from '../../actions/categoryActions';
 import Category from './_category';
+import { NEW_CATEGORY, UPDATE_CATEGORY, DELETE_CATEGORY } from '../../actions/types'
 
 class AllCategories extends Component {
 
@@ -31,12 +32,15 @@ class AllCategories extends Component {
   }
 
   componentWillReceiveProps(nextProps){
-    if (nextProps.newCategory) {
-      this.props.categories.unshift(nextProps.newCategory);
-    } else if (nextProps.updatedCategory) {
-      this.updateCategories(nextProps.updatedCategory)
-    } else if (nextProps.deletedCategory) {
-      this.deleteCategory(nextProps.deletedCategory)
+    switch (nextProps.type) {
+      case NEW_CATEGORY:
+        return this.props.categories.unshift(nextProps.newCategory);
+      case UPDATE_CATEGORY:
+        return this.updateCategories(nextProps.updatedCategory);
+      case DELETE_CATEGORY:
+        return this.deleteCategory(nextProps.deletedCategory);
+      default:
+        return
     }
   }
 
@@ -61,6 +65,7 @@ class AllCategories extends Component {
 AllCategories.propTypes = {
   fetchCategories: PropTypes.func.isRequired,
   handleRedirect: PropTypes.func.isRequired,
+  type: PropTypes.string.isRequired,
   categories: PropTypes.array.isRequired,
   newCategory: PropTypes.object,
   updatedCategory: PropTypes.object,
@@ -68,6 +73,7 @@ AllCategories.propTypes = {
 }
 
 const mapStateToProps = state => ({
+  type: state.categories.type,
   categories: state.categories.items,
   newCategory: state.categories.newItem,
   updatedCategory: state.categories.updatedItem,
