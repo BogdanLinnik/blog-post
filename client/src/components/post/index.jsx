@@ -4,6 +4,8 @@ import axiosClient from '../../axiosClient';
 import ShowPost from './show';
 import Comments from '../comment/index';
 
+const commentType = 'Post'
+
 export default class Post extends React.Component {
 
   constructor(props) {
@@ -41,8 +43,8 @@ export default class Post extends React.Component {
           </Grid>
           <Grid item xs={12} md={4}>
             <Comments
-              type="Post"
               id={this.state.postId}
+              type={commentType}
             />
           </Grid>
         </Grid>
