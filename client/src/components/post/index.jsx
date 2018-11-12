@@ -1,8 +1,8 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import axiosClient from '../axiosClient';
-import ShowPost from './components/Show';
-import Comments from '../Comment/Index';
+import axiosClient from '../../axiosClient';
+import ShowPost from './show';
+import Comments from '../comment/index';
 
 export default class Post extends React.Component {
 

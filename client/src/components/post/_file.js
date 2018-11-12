@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 
-export const File = (props) => {
+const File = (props) => {
   return (
     <span>
       Download attached file:
@@ -13,3 +13,5 @@ export const File = (props) => {
     </span>
   )
 }
+
+export default File;
