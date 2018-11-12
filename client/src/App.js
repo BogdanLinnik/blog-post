@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import createBrowserHistory from 'history/createBrowserHistory';
+import { Provider } from 'react-redux';
 import Routes from './Routes'
-import { NavBar } from './NavBar'
+import NavBar from './components/navbar/index'
+import store from './store'
 
 const history = createBrowserHistory();
 const initialState = {
@@ -32,19 +34,21 @@ export default class App extends Component {
 
   render(){
     return(
-      <div>
-        <NavBar
-          links={this.state.links}
-          title={this.state.title}
-          button={this.state.button}
-          handleRedirect={this.handleRedirect}
-        />
-        <Routes
-          history={history}
-          handleRedirect={this.handleRedirect}
-          handleNavBarChange={this.handleNavBarChange}
-        />
-      </div>
+      <Provider store={store}>
+        <div>
+          <NavBar
+            links={this.state.links}
+            title={this.state.title}
+            button={this.state.button}
+            handleRedirect={this.handleRedirect}
+          />
+          <Routes
+            history={history}
+            handleRedirect={this.handleRedirect}
+            handleNavBarChange={this.handleNavBarChange}
+          />
+        </div>
+      </Provider>
     )
   }
 }
