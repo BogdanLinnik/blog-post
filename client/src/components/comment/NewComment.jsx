@@ -114,7 +114,7 @@ class NewComment extends Component {
               />
             </DialogContent>
             <DialogActions>
-              <Button onClick={this.closeDialog} color="primary">
+              <Button onClick={this.closeDialog} color="secondary">
                 Cancel
               </Button>
               <Button color="primary" type="submit">
