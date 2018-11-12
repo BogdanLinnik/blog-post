@@ -3,10 +3,6 @@
 # This is categories model
 class Post < ApplicationRecord
   belongs_to :category
-  has_many :comments, as: :commentable
-  has_one_attached :file
-
-  def attached_file
-    file.attachment&.service_url
-  end
+  has_many :comments, as: :commentable, dependent: :destroy
+  has_one_attached :file, dependent: :destroy
 end
