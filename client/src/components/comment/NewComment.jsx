@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { createComment } from '../../actions/commentActions';
 import Button from '@material-ui/core/Button';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
@@ -14,7 +17,7 @@ const initialState = {
   open: false
 }
 
-export default class NewComment extends React.Component {
+class NewComment extends Component {
 
   constructor(props) {
     super(props);
@@ -46,8 +49,15 @@ export default class NewComment extends React.Component {
   };
 
   submitForm = () => {
-    this.props.handleCreate(this.state.author,
-                            this.state.content);
+    const commentObj = {
+      author: this.state.author,
+      content: this.state.content,
+      commentable_id: this.props.id,
+      commentable_type: this.props.type
+    }
+
+    this.props.createComment(commentObj);
+
     this.closeDialog();
   }
 
@@ -117,3 +127,11 @@ export default class NewComment extends React.Component {
     )
   }
 }
+
+NewComment.propTypes = {
+  id: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  createComment: PropTypes.func.isRequired
+}
+
+export default connect(null, { createComment })(NewComment)
