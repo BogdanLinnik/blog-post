@@ -1,5 +1,5 @@
 import React from 'react';
-import { PostCard } from './_post_card';
+import PostCard from './_post_card';
 import PostEdit from './_post_edit';
 
 export default class Post extends React.Component{

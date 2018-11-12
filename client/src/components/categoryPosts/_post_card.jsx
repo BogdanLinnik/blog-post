@@ -10,7 +10,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import Grid from '@material-ui/core/Grid';
 
-export const PostCard = (props) => {
+const PostCard = (props) => {
   return (
     <Card style={{ marginTop: 10 }}>
       <CardHeader
@@ -47,3 +47,5 @@ export const PostCard = (props) => {
     </Card>
   )
 }
+
+export default PostCard;

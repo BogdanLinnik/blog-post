@@ -1,9 +1,9 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import axiosClient from '../axiosClient';
-import { AllPosts } from './components/AllPosts';
-import NewPost from './components/NewPost';
-import Comments from '../Comment/Index';
+import axiosClient from '../../axiosClient';
+import AllPosts from './all_posts';
+import NewPost from './new_post';
+import Comments from '../comment/index';
 
 export default class CategoryPosts extends React.Component {
 

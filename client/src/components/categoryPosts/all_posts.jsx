@@ -1,7 +1,7 @@
 import React from 'react';
 import Post from './_post';
 
-export const AllPosts = (props) => {
+const AllPosts = (props) => {
   let posts = props.posts.map((post) => {
     return(
       <Post
@@ -21,3 +21,5 @@ export const AllPosts = (props) => {
     </div>
   )
 }
+
+export default AllPosts;
