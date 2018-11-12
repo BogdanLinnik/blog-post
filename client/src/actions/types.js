@@ -1,0 +1,6 @@
+export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
+export const NEW_CATEGORY = 'NEW_CATEGORY';
+export const UPDATE_CATEGORY = 'UPDATE_CATEGORY';
+export const DELETE_CATEGORY = 'DELETE_CATEGORY';
+export const FETCH_POSTS = 'FETCH_POSTS';
+export const NEW_POST = 'NEW_POST';
