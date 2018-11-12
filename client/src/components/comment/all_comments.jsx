@@ -1,8 +1,8 @@
 import React from 'react';
-import { Comment } from './_comment';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import Comment from './_comment';
 
 export default class AllComments extends React.Component  {
 

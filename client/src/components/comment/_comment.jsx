@@ -4,7 +4,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
-export const Comment = (props) => {
+const Comment = (props) => {
   return (
     <Card style={{ marginTop: 10 }}>
       <CardHeader
@@ -18,3 +18,5 @@ export const Comment = (props) => {
     </Card>
   )
 }
+
+export default Comment;

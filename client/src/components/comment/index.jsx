@@ -3,9 +3,9 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
-import axiosClient from '../axiosClient';
-import AllComments from './components/AllComments';
-import NewComment from './components/NewComment';
+import axiosClient from '../../axiosClient';
+import AllComments from './all_comments';
+import NewComment from './new_comment';
 
 export default class Comments extends React.Component {
 
