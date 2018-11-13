@@ -25,7 +25,7 @@ class Comments extends Component {
 
   addComment(comment){
     let newComments = this.state.comments
-    newComments.unshift(comment)
+    newComments.unshift(JSON.parse(comment))
     this.setState({
       comments: newComments
     })
@@ -37,6 +37,19 @@ class Comments extends Component {
       commentable_type: this.props.type
     }
     this.props.fetchComments(commentData);
+
+    CableApp.cable.subscriptions.create(
+      {
+        channel: 'CommentableChannel',
+        id: this.props.id,
+        commentable: this.props.type
+      },
+      {
+        received: (response) => {
+          this.addComment(response.comment)
+        }
+      }
+    )
   }
 
   componentWillReceiveProps(nextProps){
@@ -61,11 +74,7 @@ class Comments extends Component {
               />
               <CardContent>
                 <AllComments
-                  id={this.props.id}
-                  type={this.props.type}
-                  cableApp={CableApp}
                   comments={this.state.comments}
-                  addComment={this.addComment}
                 />
               </CardContent>
             </Card>

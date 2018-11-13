@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
+# This is channel for commentables
 class CommentableChannel < ApplicationCable::Channel
   def subscribed
-    @commentable = params[:commentable].constantize.find(params[:id])
-    stream_for @commentable
+    stream_from "comment_#{params[:commentable]}_#{params[:id]}_channel"
   end
 
   def unsubscribed; end

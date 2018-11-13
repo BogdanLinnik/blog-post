@@ -28,7 +28,7 @@ class NewComment extends Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
-  componentDidMount() {
+  componentWillMount() {
     ValidatorForm.addValidationRule('isValidAuthor', (value) => {
       return /(?=^[A-Z][A-z]+(\.\s|\.\s.*|\s.*\s|\s)[A-Z][A-z]+(\.$|\.\s.*$|\s.*$|$))(?=.*\..*)/.test(value)
     });

@@ -7,4 +7,6 @@ class Comment < ApplicationRecord
 
   validates_presence_of :author, :content
   validates_format_of :author, with: VALID_AUTHOR
+
+  after_create_commit { CommentBroadcastJob.perform_later(commentable, self) }
 end

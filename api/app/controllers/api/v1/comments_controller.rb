@@ -13,8 +13,7 @@ module Api
 
       def create
         @comment = Comment.create(comment_params)
-        CommentableChannel.broadcast_to(@comment.commentable,
-                                        comment: @comment)
+        render nothing: true
       end
 
       private
