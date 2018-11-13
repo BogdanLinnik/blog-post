@@ -35,23 +35,23 @@
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-## Client Readme
+# Client Readme
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Project preparation
+### Project preparation
   1. `npm i --save`
   2. `yarn i --save`
   3.  copy .env.example to .env - There is PORT constant which will specify You client server on 8000 port
 
-## Start client server:
+### Start client server:
 
 1. `npm start`
 
 Runs the app in the development mode.<br>
 Open [http://localhost:8000](http://localhost:8000) to view it in the browser.
 
-## Used libraries
+### Used libraries
 
 1. Material UI as Responsive front-end component library
 2. Material UI icons for icons usage;
@@ -59,10 +59,10 @@ Open [http://localhost:8000](http://localhost:8000) to view it in the browser.
 4. Axios - for simlify requests to server;
 5. React-material-ui-form-validator - for simplify custom form rules generation;
 
-##### Not solved tasks:
+## Not solved tasks:
 * No test coverage
 
-##### Difficulties:
+## Difficulties:
 * Setting up basic project environments - this third app version - first was generated using rails-react gem, second react_on_rails, and last one - separated client and api apps;
 
 * Problem with creating/updating user file, but it was easily fixed by changing request headers and used formData for building request;
