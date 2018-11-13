@@ -1,28 +1,23 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchComments } from '../../actions/commentActions';
-import { NEW_COMMENT } from '../../actions/types'
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
 import Comment from './_comment';
+import NoComments from './_no_comments';
 
-class AllComments extends Component  {
+export default class AllComments extends Component {
 
-  componentDidMount(){
-    const commentData = {
-      commentable_id: this.props.id,
-      commentable_type: this.props.commentable_type
-    }
-
-    this.props.fetchComments(commentData);
-  }
-
-  componentWillReceiveProps(nextProps){
-    if (nextProps.type === NEW_COMMENT){
-      this.props.comments.unshift(nextProps.newComment)
-    }
+  componentWillMount(){
+    this.props.cableApp.cable.subscriptions.create(
+      {
+        channel: 'CommentableChannel',
+        id: this.props.id,
+        commentable: this.props.type
+      },
+      {
+        received: (response) => {
+          this.props.addComment(response.comment)
+        }
+      }
+    )
   }
 
   render(){
@@ -39,13 +34,7 @@ class AllComments extends Component  {
       })
     } else {
       comments = (
-        <Card>
-          <CardContent >
-            <Typography component="p" style={{wordBreak: 'break-word'}}>
-              No comments
-            </Typography>
-          </CardContent>
-        </Card>
+        <NoComments />
       )
     }
 
@@ -58,17 +47,9 @@ class AllComments extends Component  {
 }
 
 AllComments.propTypes = {
-  fetchComments: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
-  commentable_type: PropTypes.string.isRequired,
-  comments: PropTypes.array,
-  newComment: PropTypes.object
+  type: PropTypes.string.isRequired,
+  comments: PropTypes.array.isRequired,
+  addComment: PropTypes.func.isRequired,
+  cableApp: PropTypes.object.isRequired
 }
-
-const mapStateToProps = state => ({
-  type: state.comments.type,
-  comments: state.comments.items,
-  newComment: state.comments.newItem,
-})
-
-export default connect(mapStateToProps, { fetchComments })(AllComments)
