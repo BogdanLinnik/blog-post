@@ -5,6 +5,7 @@ import { fetchPosts } from '../../actions/postActions';
 import { FETCH_POSTS, NEW_POST, UPDATE_POST, DELETE_POST } from '../../actions/types'
 import Post from './_post';
 import NewPost from './NewPost';
+import NoPosts from './_no_posts';
 
 const categoryLinks = [{name: 'Categories List', path: '/'}]
 const initialState = {
@@ -81,19 +82,27 @@ class AllPosts extends Component {
   }
 
   render(){
-    let posts = this.props.posts.map((post) => {
-      return(
-        <Post
-          key={post.id}
-          post={post}
-          config={this.state.multipartConfig}
-          buildFormData={this.buildFormData}
-          categoryId={this.props.categoryId}
-          handleDelete={this.props.handleDelete}
-          handleRedirect={this.props.handleRedirect}
-        />
+    let posts
+
+    if (this.props.posts.length > 0){
+      posts = this.props.posts.map((post) => {
+        return(
+          <Post
+            key={post.id}
+            post={post}
+            config={this.state.multipartConfig}
+            buildFormData={this.buildFormData}
+            categoryId={this.props.categoryId}
+            handleDelete={this.props.handleDelete}
+            handleRedirect={this.props.handleRedirect}
+          />
+        )
+      })
+    } else {
+      posts = (
+        <NoPosts />
       )
-    })
+    }
 
     return(
       <div>

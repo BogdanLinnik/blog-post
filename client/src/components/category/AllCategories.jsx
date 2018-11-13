@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { fetchCategories } from '../../actions/categoryActions';
 import { NEW_CATEGORY, UPDATE_CATEGORY, DELETE_CATEGORY } from '../../actions/types'
 import Category from './_category';
+import NoCategories from './_no_categories';
 
 class AllCategories extends Component {
 
@@ -45,15 +46,22 @@ class AllCategories extends Component {
   }
 
   render(){
-    const categories = this.props.categories.map((category) => {
-      return(
-        <Category
-          key={category.id}
-          category={category}
-          handleRedirect={this.props.handleRedirect}
-        />
+    let categories;
+    if (this.props.categories.length > 0) {
+      categories = this.props.categories.map((category) => {
+        return(
+          <Category
+            key={category.id}
+            category={category}
+            handleRedirect={this.props.handleRedirect}
+          />
+        )
+      })
+    } else {
+      categories = (
+        <NoCategories />
       )
-    })
+    }
     return(
       <div>
         {categories}
