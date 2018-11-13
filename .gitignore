@@ -23,6 +23,7 @@ api/!/storage/.keep
 api/config/master.key
 api/config/credentials.yml.enc
 api/config/database.yml
+api/config/cable.yml
 api/Gemfile.lock
 
 # Client ignored files
