@@ -6,6 +6,7 @@ import NavBar from './components/navbar/index'
 import store from './store'
 
 const history = createBrowserHistory();
+
 const initialState = {
   links: [],
   title: null,
