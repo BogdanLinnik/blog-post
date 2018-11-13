@@ -1,4 +1,4 @@
-import { FETCH_COMMENTS, NEW_COMMENT } from '../actions/types'
+import { FETCH_COMMENTS } from '../actions/types'
 
 const initialState = {
   type: '',
@@ -12,12 +12,6 @@ export default function(state = initialState, action) {
         ...state,
         type: action.type,
         items: action.payload
-      }
-    case NEW_COMMENT:
-      return {
-        ...state,
-        type: action.type,
-        newItem: action.payload
       }
     default:
       return state;
