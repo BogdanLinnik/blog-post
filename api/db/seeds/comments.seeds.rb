@@ -5,7 +5,7 @@ after :posts do
   Category.all.each do |category|
     5.times do |i|
       Comment.create(
-        author: "Author Name ##{i + 1}",
+        author: "Author Name ##{i + 1}.",
         content: "Some comment ##{i + 1}",
         commentable_id: category.id,
         commentable_type: 'Category'
@@ -16,7 +16,7 @@ after :posts do
   puts 'Seeding posts comments.'
   Post.all.each do |post|
     5.times do |i|
-      Comment.new(
+      Comment.create(
         author: "Author Name ##{i + 1}.",
         content: "Some comment ##{i + 1}.",
         commentable_id: post.id,
