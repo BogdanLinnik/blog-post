@@ -7,12 +7,12 @@ import Typography from '@material-ui/core/Typography';
 
 const Comment = (props) => {
   return (
-    <Card style={{ marginTop: 10 }}>
+    <Card className="card">
       <CardHeader
         title={props.comment.author}
       />
       <CardContent >
-        <Typography component="p" style={{wordBreak: 'break-word'}}>
+        <Typography component="p" className="paragraph">
           {props.comment.content}
         </Typography>
       </CardContent>

@@ -66,7 +66,7 @@ class NewComment extends Component {
       <div>
         <IconButton>
           <AddIcon
-            style={{color: 'white'}}
+            className="cardHeader"
             onClick={this.openDialog}
           />
         </IconButton>

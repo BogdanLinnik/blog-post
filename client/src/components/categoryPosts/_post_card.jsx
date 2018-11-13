@@ -15,7 +15,7 @@ import { deletePost } from '../../actions/postActions';
 
 const PostCard = (props) => {
   return (
-    <Card style={{ marginTop: 10 }}>
+    <Card className="card">
       <CardHeader
         title={props.post.name}
         action={
@@ -30,7 +30,7 @@ const PostCard = (props) => {
         }
       />
       <CardContent >
-        <Typography component="p" style={{wordBreak: 'break-word'}}>
+        <Typography component="p" className="paragraph">
           {props.post.content}
         </Typography>
       </CardContent>

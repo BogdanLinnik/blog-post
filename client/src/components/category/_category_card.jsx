@@ -15,7 +15,7 @@ import { deleteCategory } from '../../actions/categoryActions';
 
 const CategoryCard = (props) => {
   return (
-    <Card style={{ marginTop: 10 }}>
+    <Card className="card">
       <CardHeader
         title={props.category.name}
         action={
@@ -30,7 +30,7 @@ const CategoryCard = (props) => {
         }
       />
       <CardContent >
-        <Typography component="p" style={{wordBreak: 'break-word'}}>
+        <Typography component="p" className="paragraph">
           {props.category.description}
         </Typography>
       </CardContent>

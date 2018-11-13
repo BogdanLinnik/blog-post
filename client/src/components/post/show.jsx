@@ -11,12 +11,12 @@ export default class ShowPost extends Component {
     let fileTemplate = this.props.post.file_name ? <File post={this.props.post} /> : 'No Files attached'
 
     return (
-      <Card style={{ marginTop: 10 }}>
+      <Card className="card">
         <CardHeader
           title={this.props.post.name}
         />
         <CardContent >
-          <Typography component="p" style={{wordBreak: 'break-word'}}>
+          <Typography component="p" className="paragraph">
             {this.props.post.content}
           </Typography>
           <Typography component="p">

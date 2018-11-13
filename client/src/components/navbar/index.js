@@ -17,9 +17,9 @@ const NavBar = (props) => {
   return(
     <div>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar id="navbar">
           {links}
-          <Typography variant="title" color="inherit" style={{ flex: 1 }}>
+          <Typography variant="title" color="inherit" id="navbar-title">
             {props.title}
           </Typography>
           {props.button}

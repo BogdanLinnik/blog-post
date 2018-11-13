@@ -61,7 +61,7 @@ class PostEdit extends Component {
 
   render(){
     return (
-      <Card style={{ marginTop: 10 }}>
+      <Card className="card">
         <ValidatorForm onSubmit={() => this.handleFormSubmit()} >
           <CardHeader
             title={
@@ -69,7 +69,7 @@ class PostEdit extends Component {
                 <input name="file"
                   id="file"
                   type="file"
-                  style={{ display: 'none' }}
+                  className="file"
                   onChange={this.handleFileChange}
                   accept='*'
                   data-max-size='2048'
@@ -78,7 +78,7 @@ class PostEdit extends Component {
                   <Button variant="contained" component="span">
                     Upload file (Max size 2mb)
                   </Button>
-                  <Typography component="p" style={{wordBreak: 'break-word', display: 'inline-block', marginLeft: '20px'}}>
+                  <Typography component="p" className="file-name">
                     {this.state.file_name}
                   </Typography>
                 </label>

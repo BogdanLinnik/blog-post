@@ -28,3 +28,47 @@ code {
 .separator {
   margin-right: 5px;
 }
+
+.noData {
+  word-break: break-word;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.card {
+  margin-top: 10px;
+}
+
+.paragraph {
+  word-break: break-word;
+}
+
+.file {
+  display: none;
+}
+
+.file-name {
+  word-break: break-word;
+  display: inline-block !important;
+  margin-left: 20px !important;
+}
+
+#comment-container {
+  background-color: darkblue;
+}
+
+#navbar-title {
+  flex: 1;
+}
+
+@media only screen and (max-width: 600px) {
+  #navbar > h2 {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 300px) {
+  #navbar > h2 {
+    font-size: 10px;
+  }
+}

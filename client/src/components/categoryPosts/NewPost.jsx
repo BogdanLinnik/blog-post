@@ -99,7 +99,7 @@ class NewPost extends Component {
               <input name="file"
                 id="file"
                 type="file"
-                style={{ display: 'none' }}
+                className="file"
                 onChange={this.handleFileChange}
                 accept='*'
                 data-max-size='2048'
@@ -108,7 +108,7 @@ class NewPost extends Component {
                 <Button variant="contained" component="span">
                   Upload file (Max size 2mb)
                 </Button>
-                <Typography component="p" style={{wordBreak: 'break-word', display: 'inline-block', marginLeft: '20px'}}>
+                <Typography component="p" className="file-name">
                   {fileName}
                 </Typography>
               </label>

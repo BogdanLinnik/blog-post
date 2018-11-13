@@ -41,7 +41,7 @@ class CategoryEdit extends Component {
 
   render(){
     return (
-      <Card style={{ marginTop: 10 }}>
+      <Card className="card">
         <ValidatorForm onSubmit={() => this.handleFormSubmit()} >
           <CardHeader
             title={
