@@ -45,7 +45,7 @@ class NewComment extends Component {
   };
 
   closeDialog = () => {
-    this.setState({ open: false });
+    this.setState(initialState);
   };
 
   submitForm = () => {

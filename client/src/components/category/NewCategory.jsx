@@ -44,14 +44,12 @@ class NewCategory extends Component {
   };
 
   closeDialog = () => {
-    this.setState({ open: false });
+    this.setState(initialState);
   };
 
   submitForm = () => {
     let category = { category: {name: this.state.name, description: this.state.description} }
     this.props.createCategory(category)
-
-    this.setState(initialState);
     this.closeDialog();
   }
 
