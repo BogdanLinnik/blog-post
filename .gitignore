@@ -22,9 +22,16 @@ api/!/storage/.keep
 # Ignore master key for decrypting credentials and more.
 api/config/master.key
 api/config/credentials.yml.enc
+
+# Ignore database and cable configs
 api/config/database.yml
 api/config/cable.yml
+
+# Ignore Gefile.lock
 api/Gemfile.lock
+
+# Ignore .env file
+api/.env
 
 # Client ignored files
 

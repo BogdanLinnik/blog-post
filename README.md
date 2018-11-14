@@ -16,16 +16,18 @@
 
 ### Configuration
   1. `bundle install`
-  2. copy config/database.yml.example to config/database.yml and fill it with Your database configuration data;
-  3. copy config/cable.yml.example to config/cable.yml and fill it with Your cable configuration data - You can change 
-     redis adapter to Your prefared adapter;  
+  2. .env.example to .env . And change constants values to Yours - I'm using it for storing mysql, redis and client
+     url for action cable configuration data.
+  3. config/database.yml.example to config/database.yml and fill it with Your database configuration data;
+  4. copy config/cable.yml.example to config/cable.yml and fill it with Your cable configuration data - You can change
+     redis adapter to Your prefared adapter;
 
 ### Database creation
 1. `rails db:create`
 
 ### Database initialization
 1. `rails db:setup`
-  
+
 ### Services (job queues, cache servers, search engines, etc.)
   1. Mysql service;
   2. If You use not async cable adapter, Your sevice should be working too (In my case it was redis-server)
@@ -49,7 +51,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 1. `npm start`
 
 Runs the app in the development mode.<br>
-Open [http://localhost:8000](http://localhost:8000) to view it in the browser.
+Open [http://localhost:5100](http://localhost:5100) to view it in the browser.
 
 ### Used libraries
 
@@ -67,5 +69,9 @@ Open [http://localhost:8000](http://localhost:8000) to view it in the browser.
 
 * Problem with creating/updating user file, but it was easily fixed by changing request headers and used formData for building request;
 
-* Breadcrumbs was created mannualy and hardcoded, in post show page has a problem with react lifecycle - When I'm 
+* Breadcrumbs was created mannualy and hardcoded, in post show page has a problem with react lifecycle - When I'm
   updating navbar, I actually update App component state, and this updates post compenent, I get maximum update deep error,     thats why I'm still using axios request there instead of redux action;
+
+# Start servers using Foreman:
+
+You can run `forman -f Procfile.dev` in project root

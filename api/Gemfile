@@ -48,3 +48,5 @@ gem 'seedbank'
 
 # Gem for using redis with active cable
 gem 'redis', '~> 3.2', '>= 3.2.2'
+
+gem 'dotenv-rails'
