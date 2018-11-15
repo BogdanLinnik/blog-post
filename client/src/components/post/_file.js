@@ -1,7 +1,8 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import PropTypes from 'prop-types';
 
-const File = (props) => {
+const PostFile = (props) => {
   return (
     <span>
       Download attached file:
@@ -14,4 +15,8 @@ const File = (props) => {
   )
 }
 
-export default File;
+PostFile.propTypes = {
+  post: PropTypes.object.isRequired,
+}
+
+export default PostFile

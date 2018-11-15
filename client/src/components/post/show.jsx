@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
+import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
-import File from './_file';
+import PostFile from './_file';
 
 export default class ShowPost extends Component {
 
   render(){
-    let fileTemplate = this.props.post.file_name ? <File post={this.props.post} /> : 'No Files attached'
+    let fileTemplate = this.props.post.file_name ? <PostFile post={this.props.post} /> : 'No Files attached'
 
     return (
       <Card className="card">
@@ -26,4 +27,8 @@ export default class ShowPost extends Component {
       </Card>
     )
   }
+}
+
+ShowPost.propTypes = {
+  post: PropTypes.object.isRequired,
 }

@@ -1,5 +1,5 @@
 import axiosClient from '../axiosClient';
-import { FETCH_POSTS, NEW_POST, UPDATE_POST, DELETE_POST } from '../actions/types'
+import { FETCH_POSTS, FETCH_POST, NEW_POST, UPDATE_POST, DELETE_POST } from '../actions/types'
 
 export const fetchPosts = (categoryId) => dispatch => {
   axiosClient.get(`categories/${categoryId}.json`).then((response) => {
@@ -7,6 +7,15 @@ export const fetchPosts = (categoryId) => dispatch => {
       type: FETCH_POSTS,
       category: response.data.category,
       posts: response.data.posts
+    })
+  });
+}
+
+export const fetchPost = (postId) => dispatch => {
+  axiosClient.get(`posts/${postId}.json`).then((response) => {
+    dispatch({
+      type: FETCH_POST,
+      post: response.data.post
     })
   });
 }

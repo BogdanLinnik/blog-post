@@ -1,4 +1,4 @@
-import { FETCH_POSTS, NEW_POST, UPDATE_POST, DELETE_POST } from '../actions/types'
+import { FETCH_POSTS, FETCH_POST, NEW_POST, UPDATE_POST, DELETE_POST } from '../actions/types'
 
 const initialState = {
   type: '',
@@ -15,6 +15,11 @@ export default function(state = initialState, action) {
         type: action.type,
         category: action.category,
         items: action.posts
+      }
+    case FETCH_POST:
+      return {
+        ...state,
+        item: action.post
       }
     case NEW_POST:
       return {

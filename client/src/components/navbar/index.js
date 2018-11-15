@@ -7,7 +7,7 @@ import { Route } from 'react-router-dom';
 import NewCategory from './NewCategory';
 import NewPost from './NewPost';
 
-const NavBar = (props) => {
+const NavBar = () => {
 
   return(
     <div>
