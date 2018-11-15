@@ -60,6 +60,7 @@ Open [http://localhost:5100](http://localhost:5100) to view it in the browser.
 3. Action cable - for simplify work with websockets;
 4. Axios - for simlify requests to server;
 5. React-material-ui-form-validator - for simplify custom form rules generation;
+6. react-breadcrumbs-dynamic - for navigation breadcrumbs;
 
 ## Not solved tasks:
 * No test coverage
@@ -69,8 +70,8 @@ Open [http://localhost:5100](http://localhost:5100) to view it in the browser.
 
 * Problem with creating/updating user file, but it was easily fixed by changing request headers and used formData for building request;
 
-* Breadcrumbs was created mannualy and hardcoded, in post show page has a problem with react lifecycle - When I'm
-  updating navbar, I actually update App component state, and this updates post compenent, I get maximum update deep error,     thats why I'm still using axios request there instead of redux action;
+* First version of breadcrumbs was hardcoded and has problems with react lifecycle. It was fixed when I replace it with
+  react breadcrumbs dynamic
 
 # Start servers using Foreman:
 
