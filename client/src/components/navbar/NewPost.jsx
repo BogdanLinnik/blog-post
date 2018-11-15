@@ -17,7 +17,15 @@ const initialState = {
   content: '',
   open: false,
   file: null,
-  fileTooBig: false
+  fileTooBig: false,
+}
+
+const config = {
+  multipartConfig: {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  }
 }
 
 class NewPost extends Component {
@@ -30,6 +38,17 @@ class NewPost extends Component {
     this.state = initialState;
     this.handleChange = this.handleChange.bind(this)
     this.handleFileChange = this.handleFileChange.bind(this)
+  }
+
+  buildFormData(name, content, file){
+    let formData = new FormData();
+    formData.append('name', name);
+    formData.append('content', content);
+    formData.append('category_id', this.props.match.params.id);
+    if (file) {
+      formData.append('file', file);
+    }
+    return(formData);
   }
 
   componentDidMount() {
@@ -66,13 +85,13 @@ class NewPost extends Component {
   };
 
   submitForm = () => {
-    const formData = this.props.buildFormData(
+    const formData = this.buildFormData(
       this.state.name,
       this.state.content,
       this.state.file
     );
 
-    this.props.createPost(formData, this.props.config);
+    this.props.createPost(formData, config);
 
     this.closeDialog();
   }
@@ -176,9 +195,7 @@ class NewPost extends Component {
 }
 
 NewPost.propTypes = {
-  buildFormData: PropTypes.func.isRequired,
   createPost: PropTypes.func.isRequired,
-  config: PropTypes.object.isRequired
 }
 
 export default connect(null, { createPost })(NewPost)

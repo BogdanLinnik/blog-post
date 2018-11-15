@@ -1,5 +1,6 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
+import { BreadcrumbsItem } from 'react-breadcrumbs-dynamic'
 import axiosClient from '../../axiosClient';
 import ShowPost from './show';
 import Comments from '../comment/index';
@@ -22,12 +23,6 @@ export default class Post extends React.Component {
                .then((response) => {this.setState({
         category: response.data.category,
         post: response.data.post
-      }, () => {
-        const postLinks = [{name: 'Categories List', path: '/'},
-                           {name: this.state.category.name, path: `/categories/${this.state.category.id}`}]
-        const postName = this.state.post.name
-        const postButton = ''
-        this.props.handleNavBarChange(postLinks, postName, postButton)
       })
     });
   }
@@ -35,6 +30,7 @@ export default class Post extends React.Component {
   render(){
     return(
       <div>
+        <BreadcrumbsItem to={`/categories/${this.state.postId}`}>{this.state.post.name}</BreadcrumbsItem>
         <Grid container justify="center">
           <Grid item xs={12} md={7}>
             <ShowPost

@@ -22,7 +22,6 @@ export default class CategoryPosts extends Component {
           <Grid item xs={12} md={7}>
             <AllPosts
               categoryId={this.state.categoryId}
-              handleNavBarChange={this.props.handleNavBarChange}
               handleRedirect={this.props.handleRedirect}
             />
           </Grid>
@@ -40,6 +39,5 @@ export default class CategoryPosts extends Component {
 
 CategoryPosts.propTypes = {
   handleRedirect: PropTypes.func.isRequired,
-  handleNavBarChange: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired
 }

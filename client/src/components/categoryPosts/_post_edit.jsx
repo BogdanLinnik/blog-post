@@ -11,6 +11,14 @@ import Snackbar from '@material-ui/core/Snackbar';
 import Typography from '@material-ui/core/Typography';
 import { updatePost } from '../../actions/postActions';
 
+const config = {
+  multipartConfig: {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  }
+}
+
 class PostEdit extends Component {
 
   constructor(props) {
@@ -24,6 +32,7 @@ class PostEdit extends Component {
       fileTooBig: false
     }
     this.handleChange = this.handleChange.bind(this)
+    this.buildFormData = this.buildFormData.bind(this)
   }
 
   componentDidMount() {
@@ -47,15 +56,27 @@ class PostEdit extends Component {
     }
   }
 
+  buildFormData(name, content, file){
+    let formData = new FormData();
+    formData.append('name', name);
+    formData.append('content', content);
+    formData.append('category_id', this.props.categoryId);
+    if (file) {
+      formData.append('file', file);
+    }
+    return(formData);
+  }
+
+
   handleFormSubmit = () => {
 
-    const formData = this.props.buildFormData(
+    const formData = this.buildFormData(
       this.state.name,
       this.state.content,
       this.state.file
     );
 
-    this.props.updatePost(this.state.id, formData, this.props.config)
+    this.props.updatePost(this.state.id, formData, config)
     this.props.handleEdit();
   }
 
@@ -148,10 +169,8 @@ class PostEdit extends Component {
 }
 
 PostEdit.propTypes = {
-  buildFormData: PropTypes.func.isRequired,
   updatePost: PropTypes.func.isRequired,
   handleEdit: PropTypes.func.isRequired,
-  config: PropTypes.object.isRequired,
   post: PropTypes.object.isRequired
 }
 

@@ -17,12 +17,10 @@ code {
   color: white !important;
 }
 
-.navbarLink {
+a {
   cursor: pointer;
-}
-
-.navbarLink:hover {
-  color: red;
+  color: white !important;
+  text-decoration: none;
 }
 
 .separator {

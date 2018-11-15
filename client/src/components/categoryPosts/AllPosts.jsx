@@ -2,54 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchPosts } from '../../actions/postActions';
-import { FETCH_POSTS, NEW_POST, UPDATE_POST, DELETE_POST } from '../../actions/types'
+import { NEW_POST, UPDATE_POST, DELETE_POST } from '../../actions/types'
 import Post from './_post';
-import NewPost from './NewPost';
 import NoPosts from './_no_posts';
-
-const categoryLinks = [{name: 'Categories List', path: '/'}]
-const initialState = {
-  multipartConfig: {
-    headers: {
-      'Content-Type': 'multipart/form-data'
-    }
-  }
-}
 
 class AllPosts extends Component {
 
-  constructor(){
-    super();
-    this.state = initialState;
-    this.buildFormData = this.buildFormData.bind(this);
-    this.changeNavBar = this.changeNavBar.bind(this);
-  }
-
   componentWillMount() {
     this.props.fetchPosts(this.props.categoryId)
-  }
-
-  changeNavBar(category) {
-    const categoryName = category.name
-    const newPost = (
-      <NewPost
-        buildFormData={this.buildFormData}
-        categoryId={this.props.categoryId}
-        config={this.state.multipartConfig}
-      />
-    )
-    this.props.handleNavBarChange(categoryLinks, categoryName, newPost)
-  }
-
-  buildFormData(name, content, file){
-    let formData = new FormData();
-    formData.append('name', name);
-    formData.append('content', content);
-    formData.append('category_id', this.props.categoryId);
-    if (file) {
-      formData.append('file', file);
-    }
-    return(formData);
   }
 
   deletePost(deletedPost){
@@ -68,8 +28,6 @@ class AllPosts extends Component {
 
   componentWillReceiveProps(nextProps){
     switch (nextProps.type) {
-      case FETCH_POSTS:
-        return this.changeNavBar(nextProps.category);
       case NEW_POST:
         return this.props.posts.unshift(nextProps.newPost);
       case UPDATE_POST:
@@ -90,8 +48,6 @@ class AllPosts extends Component {
           <Post
             key={post.id}
             post={post}
-            config={this.state.multipartConfig}
-            buildFormData={this.buildFormData}
             categoryId={this.props.categoryId}
             handleDelete={this.props.handleDelete}
             handleRedirect={this.props.handleRedirect}
@@ -114,7 +70,6 @@ class AllPosts extends Component {
 
 AllPosts.propTypes = {
   handleRedirect: PropTypes.func.isRequired,
-  handleNavBarChange: PropTypes.func.isRequired,
   fetchPosts: PropTypes.func.isRequired,
   categoryId: PropTypes.string.isRequired,
   category: PropTypes.object.isRequired,

@@ -24,6 +24,7 @@ export default class Post extends Component {
     const postEdit = (
       <PostEdit
         post={this.props.post}
+        categoryId={this.props.categoryId}
         buildFormData={this.props.buildFormData}
         config={this.props.config}
         handleEdit={this.handleEdit}
@@ -51,8 +52,6 @@ export default class Post extends Component {
 
 Post.propTypes = {
   handleRedirect: PropTypes.func.isRequired,
-  buildFormData: PropTypes.func.isRequired,
   categoryId: PropTypes.string.isRequired,
   post: PropTypes.object.isRequired,
-  config: PropTypes.object.isRequired
 }
